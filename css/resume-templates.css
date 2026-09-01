@@ -1,0 +1,506 @@
+/* ==========================================================================
+   RESUME TEMPLATES STYLESHEET (4 ATS-FRIENDLY & PROFESSIONAL DESIGNS)
+   ========================================================================== */
+
+/* Universal Resume Base Settings */
+.resume-paper-container {
+  width: 210mm;
+  min-height: 297mm;
+  background: #ffffff;
+  color: var(--resume-text, #1e293b);
+  font-family: var(--resume-font, 'Plus Jakarta Sans', sans-serif);
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 10pt;
+}
+
+/* Base typography helpers */
+.resume-paper-container h1,
+.resume-paper-container h2,
+.resume-paper-container h3,
+.resume-paper-container h4,
+.resume-paper-container h5,
+.resume-paper-container p,
+.resume-paper-container span,
+.resume-paper-container li {
+  margin: 0;
+  padding: 0;
+}
+
+.resume-paper-container a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.resume-section-title {
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8pt;
+  color: var(--resume-accent, #4f46e5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   TEMPLATE 1: MODERN TECH (TWO-COLUMN WITH ACCENT SIDEBAR)
+   ========================================================================== */
+.template-modern-tech {
+  display: grid;
+  grid-template-columns: 70mm 1fr;
+  min-height: 297mm;
+}
+
+.template-modern-tech .modern-sidebar {
+  background: #f8fafc;
+  border-right: 1.5px solid #e2e8f0;
+  padding: 24pt 18pt;
+  display: flex;
+  flex-direction: column;
+  gap: 18pt;
+}
+
+.template-modern-tech .modern-main {
+  padding: 24pt 24pt;
+  display: flex;
+  flex-direction: column;
+  gap: 16pt;
+}
+
+.template-modern-tech .profile-avatar-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--resume-accent, #4f46e5);
+  margin-bottom: 8pt;
+}
+.template-modern-tech .profile-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.template-modern-tech .sidebar-header h1 {
+  font-size: 16pt;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+}
+.template-modern-tech .sidebar-header .job-title {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: var(--resume-accent, #4f46e5);
+  margin-top: 3pt;
+}
+
+.template-modern-tech .contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6pt;
+  font-size: 8.5pt;
+  color: #475569;
+}
+.template-modern-tech .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  word-break: break-all;
+}
+
+.template-modern-tech .skill-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4pt;
+}
+.template-modern-tech .skill-badge {
+  background: #e2e8f0;
+  color: #1e293b;
+  font-size: 8pt;
+  font-weight: 600;
+  padding: 2pt 6pt;
+  border-radius: 4px;
+}
+
+.template-modern-tech .edu-item,
+.template-modern-tech .cert-item {
+  margin-bottom: 8pt;
+}
+.template-modern-tech .edu-degree {
+  font-weight: 700;
+  font-size: 9pt;
+  color: #0f172a;
+}
+.template-modern-tech .edu-school {
+  font-size: 8.5pt;
+  color: #475569;
+}
+.template-modern-tech .edu-date {
+  font-size: 7.8pt;
+  color: #94a3b8;
+}
+
+.template-modern-tech .main-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10pt;
+}
+
+.template-modern-tech .summary-text {
+  font-size: 9pt;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.template-modern-tech .experience-item,
+.template-modern-tech .project-item {
+  margin-bottom: 12pt;
+}
+
+.template-modern-tech .item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.template-modern-tech .item-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #0f172a;
+}
+.template-modern-tech .item-company {
+  font-size: 9pt;
+  font-weight: 600;
+  color: var(--resume-accent, #4f46e5);
+}
+.template-modern-tech .item-meta {
+  font-size: 8pt;
+  color: #64748b;
+}
+
+.template-modern-tech .item-bullets {
+  margin-top: 4pt;
+  padding-left: 14pt;
+  font-size: 8.8pt;
+  color: #334155;
+}
+.template-modern-tech .item-bullets li {
+  margin-bottom: 3pt;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   TEMPLATE 2: EXECUTIVE (ELEGANT HEADER & STRUCTURED BORDERS)
+   ========================================================================== */
+.template-executive {
+  padding: 30pt 32pt;
+  display: flex;
+  flex-direction: column;
+  gap: 14pt;
+}
+
+.template-executive .exec-header {
+  text-align: center;
+  padding-bottom: 14pt;
+  border-bottom: 2px solid #0f172a;
+}
+.template-executive .exec-header h1 {
+  font-size: 22pt;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #0f172a;
+  text-transform: uppercase;
+}
+.template-executive .exec-header .job-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--resume-accent, #4f46e5);
+  margin-top: 3pt;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.template-executive .exec-contacts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12pt;
+  margin-top: 8pt;
+  font-size: 8.5pt;
+  color: #475569;
+}
+.template-executive .exec-contacts span:not(:last-child)::after {
+  content: "•";
+  margin-left: 12pt;
+  color: #94a3b8;
+}
+
+.template-executive .resume-section-title {
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 3pt;
+  color: #0f172a;
+  font-size: 10.5pt;
+  letter-spacing: 0.08em;
+}
+
+.template-executive .exec-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6pt;
+  font-size: 8.8pt;
+  color: #334155;
+}
+
+.template-executive .item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.template-executive .item-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #0f172a;
+}
+.template-executive .item-company {
+  font-weight: 600;
+  color: #334155;
+  font-style: italic;
+}
+.template-executive .item-meta {
+  font-size: 8.5pt;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.template-executive .item-bullets {
+  margin-top: 4pt;
+  padding-left: 14pt;
+  font-size: 8.8pt;
+  color: #334155;
+}
+.template-executive .item-bullets li {
+  margin-bottom: 3pt;
+}
+
+/* ==========================================================================
+   TEMPLATE 3: MINIMALIST (CLEAN SLATE & HIGH WHITESPACE)
+   ========================================================================== */
+.template-minimalist {
+  padding: 36pt 36pt;
+  display: flex;
+  flex-direction: column;
+  gap: 16pt;
+}
+
+.template-minimalist .min-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1.5px solid #0f172a;
+  padding-bottom: 12pt;
+}
+
+.template-minimalist .min-header-left h1 {
+  font-size: 20pt;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+.template-minimalist .min-header-left .job-title {
+  font-size: 10.5pt;
+  font-weight: 500;
+  color: var(--resume-accent, #4f46e5);
+}
+
+.template-minimalist .min-header-right {
+  text-align: right;
+  font-size: 8.5pt;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+}
+
+.template-minimalist .resume-section-title {
+  font-size: 9.5pt;
+  color: #64748b;
+  letter-spacing: 0.1em;
+  margin-bottom: 6pt;
+}
+
+.template-minimalist .item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.template-minimalist .item-title {
+  font-size: 9.8pt;
+  font-weight: 700;
+  color: #0f172a;
+}
+.template-minimalist .item-company {
+  font-size: 9.2pt;
+  color: #334155;
+}
+.template-minimalist .item-meta {
+  font-size: 8.2pt;
+  color: #94a3b8;
+}
+
+.template-minimalist .item-bullets {
+  margin-top: 3pt;
+  padding-left: 14pt;
+  font-size: 8.8pt;
+  color: #334155;
+}
+.template-minimalist .item-bullets li {
+  margin-bottom: 2pt;
+}
+
+/* ==========================================================================
+   TEMPLATE 4: DEVELOPER (TERMINAL / TECH BADGES ACCENT)
+   ========================================================================== */
+.template-developer {
+  padding: 26pt 28pt;
+  display: flex;
+  flex-direction: column;
+  gap: 14pt;
+  background: #ffffff;
+}
+
+.template-developer .dev-header-banner {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 16pt 20pt;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template-developer .dev-header-left h1 {
+  font-size: 18pt;
+  font-weight: 800;
+  color: #ffffff;
+}
+.template-developer .dev-header-left .job-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5pt;
+  color: #38bdf8;
+  margin-top: 2pt;
+}
+
+.template-developer .dev-contacts {
+  font-size: 8pt;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  gap: 3pt;
+  text-align: right;
+}
+
+.template-developer .resume-section-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 10pt;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 3pt 8pt;
+  border-left: 3px solid var(--resume-accent, #4f46e5);
+  border-radius: 0 4px 4px 0;
+}
+
+.template-developer .dev-skills-categorized {
+  display: flex;
+  flex-direction: column;
+  gap: 4pt;
+  font-size: 8.8pt;
+}
+.template-developer .skill-category-row {
+  display: flex;
+  gap: 6pt;
+}
+.template-developer .category-label {
+  font-weight: 700;
+  color: #0f172a;
+  min-width: 90px;
+}
+.template-developer .category-tags {
+  color: #334155;
+}
+
+.template-developer .project-card-dev {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8pt 10pt;
+  margin-bottom: 6pt;
+}
+
+.template-developer .project-links {
+  font-family: var(--font-mono, monospace);
+  font-size: 7.8pt;
+  color: var(--resume-accent, #4f46e5);
+  display: flex;
+  gap: 8pt;
+}
+
+/* ==========================================================================
+   PRINT OPTIMIZATION & PDF GENERATION (@MEDIA PRINT)
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .app-navbar,
+  .builder-pane,
+  .preview-toolbar,
+  .ambient-glow,
+  .modal-overlay,
+  #toast-container,
+  .nav-center-actions,
+  #landing-section {
+    display: none !important;
+  }
+
+  #workspace-section {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .preview-pane {
+    height: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .preview-canvas-wrapper {
+    padding: 0 !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  .resume-paper-container {
+    width: 100% !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* Page break rules for clean multi-page printing */
+  .experience-item,
+  .project-item,
+  .edu-item,
+  .main-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

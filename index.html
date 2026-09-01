@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Resume &amp; Portfolio Builder | Turn Plain English into ATS Resumes &amp; Websites</title>
+  <meta name="description" content="Generate high-impact ATS-friendly resumes and interactive personal portfolio websites in minutes with AI-powered suggestions, multiple templates, and one-click PDF export.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- HTML2PDF CDN for Client-side High-res PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- Canvas Confetti for Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- App Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/resume-templates.css">
+  <link rel="stylesheet" href="css/portfolio-theme.css">
+</head>
+<body>
+
+  <!-- Ambient Glowing Tech Background Orbs -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+
+  <!-- Master App Navbar -->
+  <header class="app-navbar">
+    <div class="nav-container">
+      <a href="#" id="nav-btn-landing" class="brand-logo">
+        <div class="logo-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <span>Career<span class="text-gradient">AI</span></span>
+      </a>
+
+      <!-- Central Mode Switcher (Resume vs Portfolio) -->
+      <div class="nav-center-actions">
+        <button id="tab-mode-resume" class="mode-tab active">
+          <i data-lucide="file-text" style="width:16px;height:16px;"></i> Resume Builder
+        </button>
+        <button id="tab-mode-portfolio" class="mode-tab">
+          <i data-lucide="globe" style="width:16px;height:16px;"></i> Personal Portfolio
+        </button>
+      </div>
+
+      <!-- Right Action Controls -->
+      <div class="nav-actions">
+        <button id="btn-ai-audit" class="btn btn-outline btn-sm" title="View ATS Score & Quality Audit">
+          <i data-lucide="shield-check" style="color:var(--accent-emerald);width:16px;height:16px;"></i>
+          <span>ATS Score: <strong id="ats-score-badge-val" style="color:var(--accent-emerald);">95%</strong></span>
+        </button>
+
+        <button id="btn-nav-workspace" class="btn btn-primary btn-sm" onclick="App.showWorkspace()">
+          <i data-lucide="edit-3" style="width:16px;height:16px;"></i> Open Builder
+        </button>
+
+        <button id="btn-download-pdf" class="btn btn-secondary btn-sm" title="Download High-Res PDF">
+          <i data-lucide="download" style="width:16px;height:16px;"></i> PDF
+        </button>
+
+        <button id="btn-theme-toggle" class="btn btn-outline btn-icon-only" title="Toggle Light/Dark Theme">
+          <i data-lucide="sun-moon" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       SECTION 1: LANDING PAGE
+       ========================================================================== -->
+  <main id="landing-section">
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-badge">
+        <span class="badge badge-ai">
+          <i data-lucide="sparkles" style="width:14px;height:14px;"></i> Powered by AI Career Suite 2.0
+        </span>
+      </div>
+
+      <h1 class="hero-title">
+        Turn Plain English into an <br>
+        <span class="text-gradient">ATS Resume &amp; Live Portfolio</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Fill out a simple step-by-step form and let our AI engine generate a pixel-perfect, ATS-compliant resume and a fully interactive personal portfolio website simultaneously.
+      </p>
+
+      <div class="hero-cta-group">
+        <button id="btn-start-building" class="btn btn-primary btn-lg">
+          <i data-lucide="rocket"></i> Start Building Free
+        </button>
+        <button id="btn-load-demo-hero" class="btn btn-secondary btn-lg">
+          <i data-lucide="zap"></i> Load Sample Profile
+        </button>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number text-gradient">98%</div>
+          <div class="stat-label">ATS Pass Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Curated Templates</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number text-gradient">2-in-1</div>
+          <div class="stat-label">Resume + Portfolio</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Free &amp; Client-Side</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Grid -->
+    <section class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i data-lucide="cpu" style="width:26px;height:26px;"></i>
+        </div>
+        <h3 class="feature-title">AI Summary &amp; Bullet Polisher</h3>
+        <p class="feature-desc">
+          Transform raw work history into punchy, metric-driven bullet points using Google's X-Y-Z formula and role-tailored executive summaries.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(16, 185, 129, 0.15);color:var(--accent-emerald);">
+          <i data-lucide="globe" style="width:26px;height:26px;"></i>
+        </div>
+        <h3 class="feature-title">Instant Portfolio Website</h3>
+        <p class="feature-desc">
+          One click turns your resume data into an interactive portfolio with filterable projects, experience timeline, skills matrix, and a live contact form.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(236, 72, 153, 0.15);color:#ec4899;">
+          <i data-lucide="file-check" style="width:26px;height:26px;"></i>
+        </div>
+        <h3 class="feature-title">ATS Readiness Audit</h3>
+        <p class="feature-desc">
+          Get real-time feedback on keyword density, formatting compliance, measurable impact, and contact details with our built-in 0–100% score engine.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(6, 182, 212, 0.15);color:var(--accent-cyan);">
+          <i data-lucide="download" style="width:26px;height:26px;"></i>
+        </div>
+        <h3 class="feature-title">High-Def PDF &amp; HTML Export</h3>
+        <p class="feature-desc">
+          Download vector-sharp PDFs formatted with precise print rules, or export a standalone single-file HTML portfolio ready to host on GitHub Pages or Vercel.
+        </p>
+      </div>
+    </section>
+
+    <!-- Templates Showcase Section -->
+    <section class="landing-templates">
+      <div class="section-header">
+        <h2 class="section-title">Designed for Modern Professionals</h2>
+        <p class="section-subtitle">Choose from 4 ATS-friendly templates tailored for tech, executive, and creative careers.</p>
+      </div>
+
+      <div class="templates-showcase-grid">
+        <div class="template-card-preview" data-template="template-modern-tech">
+          <div class="template-thumbnail">
+            <div class="template-mini-canvas">
+              <div class="mini-line title"></div>
+              <div class="mini-line accent"></div>
+              <div style="display:flex;gap:8px;margin-top:8px;">
+                <div style="width:30%;height:100px;background:#f1f5f9;border-radius:3px;"></div>
+                <div style="width:70%;display:flex;flex-direction:column;gap:5px;">
+                  <div class="mini-line"></div>
+                  <div class="mini-line"></div>
+                  <div class="mini-line"></div>
+                  <div class="mini-line accent" style="width:40%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="template-card-info">
+            <h4>Modern Tech</h4>
+            <p>Two-column layout with sidebar photo, skill badges, and clean headers.</p>
+          </div>
+        </div>
+
+        <div class="template-card-preview" data-template="template-executive">
+          <div class="template-thumbnail">
+            <div class="template-mini-canvas">
+              <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div class="mini-line title" style="width:60%;"></div>
+                <div class="mini-line accent" style="width:30%;"></div>
+              </div>
+              <hr style="border:0;border-top:1px solid #000;margin:6px 0;">
+              <div class="mini-line" style="width:80%;"></div>
+              <div class="mini-line" style="width:90%;"></div>
+              <div class="mini-line" style="width:70%;"></div>
+            </div>
+          </div>
+          <div class="template-card-info">
+            <h4>Executive Corporate</h4>
+            <p>Classic typography, centered header, and structured divider rules.</p>
+          </div>
+        </div>
+
+        <div class="template-card-preview" data-template="template-minimalist">
+          <div class="template-thumbnail">
+            <div class="template-mini-canvas">
+              <div style="display:flex;justify-content:space-between;">
+                <div class="mini-line title" style="width:45%;"></div>
+                <div class="mini-line" style="width:25%;"></div>
+              </div>
+              <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+                <div class="mini-line accent" style="width:30%;"></div>
+                <div class="mini-line" style="width:95%;"></div>
+                <div class="mini-line" style="width:85%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="template-card-info">
+            <h4>Minimalist Slate</h4>
+            <p>Single-column ultra-clean design with generous whitespace and clear hierarchy.</p>
+          </div>
+        </div>
+
+        <div class="template-card-preview" data-template="template-developer">
+          <div class="template-thumbnail">
+            <div class="template-mini-canvas" style="background:#0f172a;">
+              <div style="background:#1e293b;padding:4px;border-radius:3px;">
+                <div class="mini-line" style="background:#38bdf8;width:50%;"></div>
+              </div>
+              <div style="margin-top:8px;display:flex;flex-direction:column;gap:5px;">
+                <div class="mini-line" style="background:#475569;width:30%;"></div>
+                <div class="mini-line" style="background:#334155;width:90%;"></div>
+                <div class="mini-line" style="background:#334155;width:80%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="template-card-info">
+            <h4>Developer Terminal</h4>
+            <p>Monospace badges, tech stack tags, and repository link accents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SECTION 2: WORKSPACE (SPLIT SCREEN APP)
+       ========================================================================== -->
+  <section id="workspace-section">
+    <!-- Left Pane: Step-by-Step Form Wizard -->
+    <aside class="builder-pane">
+      <!-- Wizard Stepper Navigation Header -->
+      <div class="wizard-header">
+        <div class="step-indicator-wrapper">
+          <div class="step-tabs-container">
+            <button class="step-tab-btn active" data-step="1">1. Personal</button>
+            <button class="step-tab-btn" data-step="2">2. Experience</button>
+            <button class="step-tab-btn" data-step="3">3. Education</button>
+            <button class="step-tab-btn" data-step="4">4. Skills</button>
+            <button class="step-tab-btn" data-step="5">5. Projects</button>
+            <button class="step-tab-btn" data-step="6">6. Certs</button>
+            <button class="step-tab-btn" data-step="7">7. Design &amp; AI</button>
+          </div>
+        </div>
+        <div class="step-progress-bar">
+          <div class="step-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Wizard Scrollable Form Content -->
+      <div class="wizard-body" id="wizard-form-container">
+        <!-- STEP 1: PERSONAL DETAILS -->
+        <div class="wizard-step-panel active" id="step-panel-1">
+          <div class="step-heading">
+            <div>
+              <h3>Personal Information</h3>
+              <p>Your contact details and executive summary.</p>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button type="button" id="btn-preset-swe" class="btn btn-outline btn-sm" title="Load Software Engineer Preset">
+                SWE Preset
+              </button>
+              <button type="button" id="btn-preset-designer" class="btn btn-outline btn-sm" title="Load Designer Preset">
+                Design Preset
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="input-full-name">Full Name</label>
+              <input type="text" id="input-full-name" class="form-control" placeholder="e.g. Alex Rivera" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-job-title">Target Job Title</label>
+              <input type="text" id="input-job-title" class="form-control" placeholder="e.g. Senior Full Stack Engineer" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="input-email">Email Address</label>
+              <input type="email" id="input-email" class="form-control" placeholder="alex.rivera@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-phone">Phone Number</label>
+              <input type="text" id="input-phone" class="form-control" placeholder="+1 (555) 382-9104" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="input-location">Location</label>
+              <input type="text" id="input-location" class="form-control" placeholder="San Francisco, CA" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-website">Website / Portfolio URL</label>
+              <input type="text" id="input-website" class="form-control" placeholder="https://alexrivera.dev" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="input-linkedin">LinkedIn URL</label>
+              <input type="text" id="input-linkedin" class="form-control" placeholder="linkedin.com/in/username" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-github">GitHub Profile</label>
+              <input type="text" id="input-github" class="form-control" placeholder="github.com/username" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-avatar">Avatar / Profile Picture URL</label>
+            <input type="text" id="input-avatar" class="form-control" placeholder="https://images.unsplash.com/..." />
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <label for="input-summary">Professional Summary</label>
+              <button type="button" id="btn-ai-summary" class="btn btn-ai btn-sm">
+                <i data-lucide="sparkles" style="width:12px;height:12px;"></i> ✨ AI Summary Generator
+              </button>
+            </div>
+            <textarea id="input-summary" class="form-control" rows="4" placeholder="Briefly describe your career background, core strengths, and key achievements..."></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 2: WORK EXPERIENCE -->
+        <div class="wizard-step-panel" id="step-panel-2">
+          <div class="step-heading">
+            <div>
+              <h3>Work Experience</h3>
+              <p>Add your employment history, accomplishments, and metrics.</p>
+            </div>
+          </div>
+
+          <div id="experience-list-container">
+            <!-- Dynamic Experience Cards Injected by JS -->
+          </div>
+
+          <button type="button" id="btn-add-experience" class="add-entry-btn">
+            <i data-lucide="plus"></i> Add Work Experience
+          </button>
+        </div>
+
+        <!-- STEP 3: EDUCATION -->
+        <div class="wizard-step-panel" id="step-panel-3">
+          <div class="step-heading">
+            <div>
+              <h3>Education</h3>
+              <p>Degrees, universities, honors, and graduation years.</p>
+            </div>
+          </div>
+
+          <div id="education-list-container">
+            <!-- Dynamic Education Cards Injected by JS -->
+          </div>
+
+          <button type="button" id="btn-add-education" class="add-entry-btn">
+            <i data-lucide="plus"></i> Add Education
+          </button>
+        </div>
+
+        <!-- STEP 4: SKILLS & EXPERTISE -->
+        <div class="wizard-step-panel" id="step-panel-4">
+          <div class="step-heading">
+            <div>
+              <h3>Skills &amp; Expertise</h3>
+              <p>Categorized technical, tooling, and soft skills.</p>
+            </div>
+            <button type="button" id="btn-ai-skills-suggest" class="btn btn-ai btn-sm">
+              <i data-lucide="zap" style="width:12px;height:12px;"></i> AI Suggest Skills
+            </button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tech-skills-input">Technical &amp; Programming Skills (Press Enter to add)</label>
+            <input type="text" id="tech-skills-input" class="form-control" placeholder="e.g. TypeScript, React, Python, PostgreSQL..." />
+            <div id="tech-skills-tags" style="margin-top:8px;display:flex;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tools-skills-input">Tools, Cloud &amp; Frameworks (Press Enter to add)</label>
+            <input type="text" id="tools-skills-input" class="form-control" placeholder="e.g. Docker, AWS, Kubernetes, Git, Figma..." />
+            <div id="tools-skills-tags" style="margin-top:8px;display:flex;flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="soft-skills-input">Soft Skills &amp; Leadership (Press Enter to add)</label>
+            <input type="text" id="soft-skills-input" class="form-control" placeholder="e.g. System Design, Team Mentorship, Agile..." />
+            <div id="soft-skills-tags" style="margin-top:8px;display:flex;flex-wrap:wrap;"></div>
+          </div>
+        </div>
+
+        <!-- STEP 5: PROJECTS -->
+        <div class="wizard-step-panel" id="step-panel-5">
+          <div class="step-heading">
+            <div>
+              <h3>Featured Projects</h3>
+              <p>Highlight notable projects, repositories, and live links.</p>
+            </div>
+          </div>
+
+          <div id="projects-list-container">
+            <!-- Dynamic Projects Cards Injected by JS -->
+          </div>
+
+          <button type="button" id="btn-add-project" class="add-entry-btn">
+            <i data-lucide="plus"></i> Add Project
+          </button>
+        </div>
+
+        <!-- STEP 6: CERTIFICATIONS -->
+        <div class="wizard-step-panel" id="step-panel-6">
+          <div class="step-heading">
+            <div>
+              <h3>Certifications &amp; Awards</h3>
+              <p>Industry certifications, licenses, and recognitions.</p>
+            </div>
+          </div>
+
+          <div id="certifications-list-container">
+            <!-- Dynamic Certifications Cards Injected by JS -->
+          </div>
+
+          <button type="button" id="btn-add-certification" class="add-entry-btn">
+            <i data-lucide="plus"></i> Add Certification
+          </button>
+        </div>
+
+        <!-- STEP 7: DESIGN, THEME & ATS AUDIT -->
+        <div class="wizard-step-panel" id="step-panel-7">
+          <div class="step-heading">
+            <div>
+              <h3>Design &amp; AI Audit</h3>
+              <p>Customize fonts, colors, and evaluate ATS readiness.</p>
+            </div>
+          </div>
+
+          <!-- ATS Score Summary Card -->
+          <div class="ats-score-card" onclick="App.openAIAuditModal()" style="cursor:pointer;" title="Click for full audit checklist">
+            <div class="score-circle">
+              <div class="score-circle-inner">
+                <span class="score-value">95%</span>
+                <span class="score-text">ATS SCORE</span>
+              </div>
+            </div>
+            <div class="score-details">
+              <h4>Resume Strength: Excellent</h4>
+              <p>Your resume contains strong metrics, rich skill coverage, and ATS-friendly headers. Click to view detailed checklist.</p>
+            </div>
+          </div>
+
+          <!-- Template & Font Controls -->
+          <div class="form-group">
+            <label class="form-label" for="select-resume-template">Resume Template Layout</label>
+            <select id="select-resume-template" class="form-control customizer-select">
+              <option value="template-modern-tech">Modern Tech (Two-Column Sidebar)</option>
+              <option value="template-executive">Executive Corporate (Classic Header &amp; Rules)</option>
+              <option value="template-minimalist">Minimalist Slate (Ultra Clean Single-Column)</option>
+              <option value="template-developer">Developer Terminal (Tech Badges &amp; Monospace)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="select-resume-font">Typography Font Family</label>
+            <select id="select-resume-font" class="form-control customizer-select">
+              <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (Modern &amp; Crisp)</option>
+              <option value="'Inter', sans-serif">Inter (Clean &amp; High Readability)</option>
+              <option value="'JetBrains Mono', monospace">JetBrains Mono (Developer Focused)</option>
+              <option value="'Merriweather', Georgia, serif">Merriweather (Executive Serif)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Accent Theme Color</label>
+            <div class="color-swatches" style="margin-top:6px;">
+              <div class="color-swatch active" data-color="#4f46e5" style="background:#4f46e5;" title="Indigo"></div>
+              <div class="color-swatch" data-color="#0284c7" style="background:#0284c7;" title="Ocean Blue"></div>
+              <div class="color-swatch" data-color="#059669" style="background:#059669;" title="Emerald Green"></div>
+              <div class="color-swatch" data-color="#db2777" style="background:#db2777;" title="Rose Pink"></div>
+              <div class="color-swatch" data-color="#7c3aed" style="background:#7c3aed;" title="Deep Violet"></div>
+              <div class="color-swatch" data-color="#0f172a" style="background:#0f172a;" title="Slate Black"></div>
+            </div>
+          </div>
+
+          <!-- Backup & Data Controls -->
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border-color);display:flex;gap:10px;">
+            <button type="button" id="btn-export-json" class="btn btn-outline btn-sm">
+              <i data-lucide="download"></i> Backup JSON
+            </button>
+            <button type="button" id="btn-import-json" class="btn btn-outline btn-sm">
+              <i data-lucide="upload"></i> Restore JSON
+            </button>
+            <input type="file" id="input-import-json" accept=".json" style="display:none;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Footer Buttons -->
+      <footer class="wizard-footer">
+        <button type="button" id="btn-prev-step" class="btn btn-secondary" disabled>
+          <i data-lucide="arrow-left"></i> Previous
+        </button>
+        <button type="button" id="btn-next-step" class="btn btn-primary">
+          Next Step <i data-lucide="arrow-right"></i>
+        </button>
+      </footer>
+    </aside>
+
+    <!-- Right Pane: Live Reactive Preview -->
+    <section class="preview-pane">
+      <!-- Preview Header Toolbar -->
+      <div class="preview-toolbar">
+        <div class="toolbar-left" id="resume-specific-controls">
+          <span style="font-size:0.85rem;font-weight:700;color:var(--text-secondary);">Live Preview</span>
+        </div>
+
+        <div class="toolbar-right">
+          <button id="btn-export-portfolio" class="btn btn-secondary btn-sm" title="Export Standalone Website HTML">
+            <i data-lucide="code"></i> Export Portfolio HTML
+          </button>
+          <button onclick="ExportManager.downloadPDF()" class="btn btn-primary btn-sm" title="Download High-Res PDF">
+            <i data-lucide="file-down"></i> Download Resume PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Preview Canvas (Resume Mode) -->
+      <div class="preview-canvas-wrapper" id="resume-canvas-view">
+        <div id="resume-preview-container" class="resume-paper-container template-modern-tech">
+          <!-- Dynamically populated by ResumeRenderer.js -->
+        </div>
+      </div>
+
+      <!-- Preview Canvas (Portfolio Mode) -->
+      <div class="portfolio-preview-wrapper" id="portfolio-preview-container">
+        <!-- Dynamically populated by PortfolioRenderer.js -->
+      </div>
+    </section>
+  </section>
+
+  <!-- ==========================================================================
+       MODALS: AI ASSISTANT SUITE
+       ========================================================================== -->
+
+  <!-- Modal 1: AI Summary Generator -->
+  <div class="modal-overlay" id="modal-ai-summary">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="sparkles" style="color:#a855f7;"></i> AI Professional Summary Generator</h3>
+        <button class="modal-close-btn btn btn-outline btn-icon-only"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">
+          Choose a tailored executive summary generated specifically for your target role:
+        </p>
+        <div id="ai-summary-options-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: AI Bullet Point Polisher -->
+  <div class="modal-overlay" id="modal-ai-bullet">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="sparkles" style="color:#a855f7;"></i> Google X-Y-Z Bullet Enhancer</h3>
+        <button class="modal-close-btn btn btn-outline btn-icon-only"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">
+          Click any bullet option below to insert high-impact, metrics-driven achievements:
+        </p>
+        <div id="ai-bullet-options-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: ATS Score & Quality Audit -->
+  <div class="modal-overlay" id="modal-ai-audit">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="shield-check" style="color:var(--accent-emerald);"></i> ATS Readiness &amp; Quality Audit</h3>
+        <button class="modal-close-btn btn btn-outline btn-icon-only"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="ats-score-card">
+          <div class="score-circle">
+            <div class="score-circle-inner">
+              <span class="score-value">95%</span>
+              <span class="score-text">SCORE</span>
+            </div>
+          </div>
+          <div class="score-details">
+            <h4>Resume Optimization Status</h4>
+            <p>Analyzed against standard Applicant Tracking System (ATS) parsers.</p>
+          </div>
+        </div>
+
+        <h4 style="margin:16px 0 8px;font-size:1rem;">Optimization Breakdown:</h4>
+        <div id="ats-checklist-items"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary modal-close-btn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/sample-data.js"></script>
+  <script src="js/ai-assistant.js"></script>
+  <script src="js/resume-renderer.js"></script>
+  <script src="js/portfolio-renderer.js"></script>
+  <script src="js/export-manager.js"></script>
+  <script src="js/form-wizard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
